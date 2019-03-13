@@ -78,6 +78,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModelLocator.cs" />
+    <Page Include="Views\AddDebitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddDebtToDebitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,6 +97,14 @@
     <Compile Include="Debitor.cs" />
     <Compile Include="Debt.cs" />
     <Compile Include="DebtBookModel.cs" />
+    <Compile Include="ViewModels\AddDebitorViewModel.cs" />
+    <Compile Include="ViewModels\AddDebtToDebitorViewModel.cs" />
+    <Compile Include="Views\AddDebitorView.xaml.cs">
+      <DependentUpon>AddDebitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddDebtToDebitorView.xaml.cs">
+      <DependentUpon>AddDebtToDebitorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
