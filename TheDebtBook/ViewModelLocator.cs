@@ -13,5 +13,10 @@
         {
             get { return new AddDebitorViewModel(model);}
         }
+
+        public AddDebtToDebitorViewModel DebtViewModel
+        {
+            get { return new AddDebtToDebitorViewModel(model);}
+        }
     }
 }

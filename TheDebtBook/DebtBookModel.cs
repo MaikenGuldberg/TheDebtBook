@@ -18,7 +18,7 @@ namespace TheDebtBook
               new Debitor("Mikkel",new List<Debt>(){new Debt(200,DateTime.Now),new Debt(30,DateTime.Now),new Debt(-100,DateTime.Now)})
               #endif
             };
-            CurrentIndex = -1;
+            CurrentIndex = 0;
         }
 
         public void AddDebitor(Debitor d)
