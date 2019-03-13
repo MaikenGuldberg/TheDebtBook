@@ -1,25 +1,36 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Runtime.CompilerServices;
+using Prism.Mvvm;
 using TheDebtBook.Annotations;
+using Prism.Commands;
+using System.Windows.Input;
 
 namespace TheDebtBook
 {
-    public class MainWindowViewModel:INotifyPropertyChanged
+    public class MainWindowViewModel:BindableBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         private DebtBookModel _model;
+        private int currentIndex;
         public MainWindowViewModel(DebtBookModel model)
         {
             _model = model;
+            currentIndex = _model.CurrentIndex;
         }
+
+        public int CurrentIndex
+        {
+            get { return currentIndex; }
+            set
+            {
+                SetProperty(ref currentIndex, value);
+                _model.CurrentIndex = currentIndex;
+            }
+        }
+
+
 
         public ObservableCollection<DebitorNameTotalDept> DebitorsNameTotalDepts
         {
@@ -43,12 +54,28 @@ namespace TheDebtBook
             double totalDept = 0;
             foreach (var debt in d.Debts)
             {
-                totalDept = +debt.Value;
+                totalDept = totalDept + debt.Value;
             }
 
             return totalDept;
         }
+        #region Commands
+        ICommand _addDeptToDebitorCommand;
 
+        public ICommand AddDeptToDebitorCommand
+        {
+            get { return _addDeptToDebitorCommand ?? (_addDeptToDebitorCommand = new DelegateCommand(() =>
+            {
+
+            }, () => {
+                                 return CurrentIndex >= 0;
+                             }
+                         ).ObservesProperty(() => CurrentIndex));
+
+            }
+        }
+
+        #endregion
     }
 
     public class DebitorNameTotalDept
@@ -56,4 +83,6 @@ namespace TheDebtBook
         public string Name { get; set; }
         public double TotalDept { get; set; }
     }
+
+    
 }

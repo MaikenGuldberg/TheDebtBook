@@ -7,6 +7,7 @@ namespace TheDebtBook
     public class DebtBookModel
     {
         private ObservableCollection<Debitor> _debitors;
+        public int CurrentIndex { set; get; }
 
         public DebtBookModel()
         {
@@ -17,7 +18,7 @@ namespace TheDebtBook
               new Debitor("Mikkel",new List<Debt>(){new Debt(200,DateTime.Now),new Debt(30,DateTime.Now),new Debt(-100,DateTime.Now)})
               #endif
             };
-
+            CurrentIndex = -1;
         }
 
         public void AddDebitor(Debitor d)

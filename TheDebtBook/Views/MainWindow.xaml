@@ -14,17 +14,17 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Label Content="Depters" FontSize="25" Margin="10,26,373,348"></Label>
-        <DataGrid ItemsSource="{Binding DebitorsNameTotalDepts}" Margin="10,76,198,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False">
+        <Label Content="{Binding Path=CurrentIndex}" FontSize="25" Margin="10,26,373,348"></Label>
+        <DataGrid ItemsSource="{Binding DebitorsNameTotalDepts}" Margin="10,76,198,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="100" Width="3*"  Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn MinWidth="60" Width="2*" Header="Total Dept" Binding="{Binding TotalDept}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
             </DataGrid.Columns>
-            <i:Interaction.Triggers>
+            <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <prism:InvokeCommandAction Command="{Binding EditAgentCommand}"/>
                 </i:EventTrigger>
-            </i:Interaction.Triggers>
+            </i:Interaction.Triggers>-->
         </DataGrid>
         <Button Content="Add" HorizontalAlignment="Left" Margin="333,267,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
