@@ -38,7 +38,7 @@ namespace TheDebtBook
                 if (value != _name)
                 {
                     _name = value;
-                    //OnPropertyChanged();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace TheDebtBook
                 if (value != _value)
                 {
                     _value = value;
-                    //OnPropertyChanged();
+                    OnPropertyChanged();
                 }
             }
         }
