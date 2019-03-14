@@ -3,10 +3,11 @@
     public class ViewModelLocator
     {
         private DebtBookModel model = new DebtBookModel();
+        private NavigationService navigationService = new NavigationService();
 
         public MainWindowViewModel MainViewModel
         {
-            get { return new MainWindowViewModel(model);}
+            get { return new MainWindowViewModel(model, navigationService);}
         }
 
         public AddDebitorViewModel DebitorViewModel

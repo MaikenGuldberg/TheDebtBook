@@ -6,18 +6,22 @@ using Prism.Mvvm;
 using TheDebtBook.Annotations;
 using Prism.Commands;
 using System.Windows.Input;
+using TheDebtBook.ViewModels;
 
 namespace TheDebtBook
 {
-    public class MainWindowViewModel:BindableBase
+    public class MainWindowViewModel : BindableBase
     {
 
         private DebtBookModel _model;
         private int currentIndex;
-        public MainWindowViewModel(DebtBookModel model)
+        private NavigationService _navigationService;
+
+        public MainWindowViewModel(DebtBookModel model, NavigationService navigationService)
         {
             _model = model;
             currentIndex = _model.CurrentIndex;
+            _navigationService = navigationService;
         }
 
         public int CurrentIndex
@@ -61,19 +65,40 @@ namespace TheDebtBook
         }
         #region Commands
         ICommand _addDeptToDebitorCommand;
+        private ICommand _addDepitorCommand;
+
 
         public ICommand AddDeptToDebitorCommand
         {
-            get { return _addDeptToDebitorCommand ?? (_addDeptToDebitorCommand = new DelegateCommand(() =>
+            get
             {
+                return _addDeptToDebitorCommand ?? (_addDeptToDebitorCommand = new DelegateCommand(() =>
+          {
 
-            }, () => {
-                                 return CurrentIndex >= 0;
-                             }
-                         ).ObservesProperty(() => CurrentIndex));
+          }, () =>
+          {
+              return CurrentIndex >= 0;
+          }
+                       ).ObservesProperty(() => CurrentIndex));
 
             }
         }
+
+        public ICommand AddDepitorCommand
+        {
+            get { return _addDepitorCommand ?? (_addDepitorCommand = new RelayCommand(AddDebitor)); }
+        }
+
+
+
+
+        private void AddDebitor()
+        {
+            AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model);
+            _navigationService.ShowDebitorView(addDebitorViewModel);
+        }
+
+        
 
         #endregion
     }
@@ -84,5 +109,5 @@ namespace TheDebtBook
         public double TotalDept { get; set; }
     }
 
-    
+
 }

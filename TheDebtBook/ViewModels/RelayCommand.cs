@@ -15,6 +15,9 @@ namespace TheDebtBook.ViewModels
 
         }
 
+        readonly Action<T> _execute;
+        readonly Predicate<T> _canExecute;
+
         public RelayCommand(Action<T> execute, Predicate<T> canExecute)
         {
             if (execute == null)
@@ -27,12 +30,12 @@ namespace TheDebtBook.ViewModels
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return _canExecute == null ? true : _canExecute((T)parameter);
         }
 
         public void Execute(object parameter)
         {
-            _execute();
+            _execute((T)parameter);
         }
 
         public event EventHandler CanExecuteChanged
@@ -53,8 +56,7 @@ namespace TheDebtBook.ViewModels
             }
         }
 
-        readonly Action<T> _execute;
-        readonly Predicate<T> _canExecute;
+        
     }
 
     public class RelayCommand : ICommand
@@ -68,6 +70,18 @@ namespace TheDebtBook.ViewModels
 
             _execute = execute;
             _canExecute = canExecute;
+
+        }
+
+
+        public RelayCommand(Action execute)
+        {
+            if (execute == null)
+            {
+                throw new ArgumentNullException("execute");
+            }
+
+            _execute = execute;
 
         }
 

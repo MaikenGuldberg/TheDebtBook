@@ -26,6 +26,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>-->
         </DataGrid>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="333,267,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="333,267,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddDepitorCommand, Mode=OneTime}"/>
     </Grid>
 </Window>
