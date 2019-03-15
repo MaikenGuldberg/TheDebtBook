@@ -76,6 +76,7 @@ namespace TheDebtBook
             Debt debt = new Debt(Value, DateTime.Now);
             debitor.Debts.Add(debt);
             _model.AddDebitor(debitor);
+
             //OnPropertyChanged();
         }
 

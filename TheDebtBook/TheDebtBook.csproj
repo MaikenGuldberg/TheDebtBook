@@ -77,6 +77,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="INavigationService.cs" />
+    <Compile Include="NavigationService.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Page Include="Views\AddDebitorView.xaml">
       <SubType>Designer</SubType>
