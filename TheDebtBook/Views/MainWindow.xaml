@@ -15,10 +15,10 @@
     </Window.Resources>
     <Grid>
         <Label Content="Deptes" FontSize="25" Margin="10,26,373,348"></Label>
-        <DataGrid ItemsSource="{Binding DebitorsNameTotalDepts}" Margin="10,76,179,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}">
+        <DataGrid ItemsSource="{Binding Debitors}" Margin="10,76,179,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="100" Width="3*"  Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn MinWidth="60" Width="2*" Header="Total Dept" Binding="{Binding TotalDept}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
+                <DataGridTextColumn MinWidth="60" Width="2*" Header="Total Dept" Binding="{Binding TotalDebt}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
             </DataGrid.Columns>
             <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">

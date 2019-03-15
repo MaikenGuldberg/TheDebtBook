@@ -31,5 +31,24 @@ namespace TheDebtBook
             get => _debts;
             set => _debts = value;
         }
+
+        public double TotalDebt
+        {
+            get { return GetTotalDept(); }
+        }
+
+        private double GetTotalDept()
+        {
+            double totalDept = 0;
+            if (_debts.Count > 0)
+            {
+                
+                foreach (var debt in _debts)
+                {
+                    totalDept = totalDept + debt.Value;
+                }
+            }
+            return totalDept;
+        }
     }
 }
