@@ -14,9 +14,9 @@ namespace TheDebtBook
 
         private DebtBookModel _model;
         private int currentIndex;
-        private NavigationService _navigationService;
+        private INavigationService _navigationService;
 
-        public MainWindowViewModel(DebtBookModel model, NavigationService navigationService)
+        public MainWindowViewModel(DebtBookModel model, INavigationService navigationService)
         {
             _model = model;
             currentIndex = _model.CurrentIndex;
@@ -55,7 +55,7 @@ namespace TheDebtBook
             {
                 return _addDeptToDebitorCommand ?? (_addDeptToDebitorCommand = new DelegateCommand(() =>
           {
-              _navigationService.ShowView(View.AddDebtToDebitor);
+              _navigationService.ShowView(new AddDebtToDebitorViewModel(_model, _navigationService));
           }, () =>
           {
               return CurrentIndex >= 0;
@@ -75,7 +75,7 @@ namespace TheDebtBook
 
         private void AddDebitor()
         {
-            _navigationService.ShowView(View.AddDebitor);
+            _navigationService.ShowView(new AddDebitorViewModel(_model, _navigationService));
         }
 
         

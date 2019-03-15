@@ -12,8 +12,8 @@ namespace TheDebtBook
     {
         private DebtBookModel _model;
         private double _newDebt = 0;
-        private NavigationService _navigationService;
-        public AddDebtToDebitorViewModel(DebtBookModel model,NavigationService navigationService)
+        private INavigationService _navigationService;
+        public AddDebtToDebitorViewModel(DebtBookModel model,INavigationService navigationService)
         {
             _model = model;
             _navigationService = navigationService;
@@ -55,7 +55,7 @@ namespace TheDebtBook
 
         #region Commands
 
-        public ICommand _addDebtCommand;
+        private ICommand _addDebtCommand;
 
         public ICommand AddDebtCommand
         {
@@ -67,6 +67,17 @@ namespace TheDebtBook
             Debt debt = new Debt(_newDebt,DateTime.Now);
             _model.AddDeptToDebitor(debt,_model.CurrentIndex);
         }
+
+        private ICommand _cancelCommand;
+
+        public ICommand CancelCommand
+        {
+            get { return _cancelCommand ?? (_cancelCommand = new DelegateCommand(() =>
+            {
+                _navigationService.CloseView(this);
+            })); }
+        }
+
 
 
         #endregion

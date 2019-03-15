@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheDebtBook.Views"
         mc:Ignorable="d"
-        Title="AddDeptToDebitorView" Height="410.111" Width="599.723" DataContext="{Binding Source={StaticResource Locator},Path=DebtViewModel}">
+        Title="AddDeptToDebitorView" Height="410.111" Width="599.723">
     <Window.Resources>
         <Style x:Key="TextAlignmentRight" TargetType="{x:Type TextBlock}">
             <Setter Property="TextAlignment" Value="Right" />
@@ -31,7 +31,7 @@
                 <Label Content="kr." Grid.Column="1" HorizontalAlignment="Left" Margin="140,20,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="475,338,0,0" VerticalAlignment="Top" Width="75" Name="CloseBtn"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="475,338,0,0" VerticalAlignment="Top" Width="75" Name="CloseBtn" Command="{Binding CancelCommand, Mode=OneWay}"/>
 
     </Grid>
 </Window>

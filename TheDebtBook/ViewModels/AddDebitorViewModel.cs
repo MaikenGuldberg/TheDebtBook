@@ -14,7 +14,7 @@ namespace TheDebtBook
     public class AddDebitorViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private NavigationService _navigationService;
+        private INavigationService _navigationService;
 
 
         [NotifyPropertyChangedInvocator]
@@ -25,7 +25,7 @@ namespace TheDebtBook
 
         private DebtBookModel _model;
 
-        public AddDebitorViewModel(DebtBookModel model, NavigationService navigationService)
+        public AddDebitorViewModel(DebtBookModel model, INavigationService navigationService)
         {
             _model = model;
             _navigationService = navigationService;
@@ -89,9 +89,16 @@ namespace TheDebtBook
             _model.AddDebitor(debitor);
             
             AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
-
-            _navigationService.CloseView(View.AddDebitor);
+            
+            _navigationService.CloseView(this);
             //OnPropertyChanged();
+        }
+
+        private ICommand _cancelCommand;
+
+        public ICommand CancelCommand
+        {
+            get { return _cancelCommand ?? (_cancelCommand = new DelegateCommand(() => { _navigationService.CloseView(this); })); }
         }
 
     }

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheDebtBook.Views"
         mc:Ignorable="d"
-        Title="AddDebitorView" Height="450" Width="800" DataContext="{Binding Source={StaticResource Locator}, Path=DebitorViewModel}"
+        Title="AddDebitorView" Height="450" Width="800"
         >
     <Grid>
-    <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="114,288,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddNewDebitorCommand, Mode=OneTime}"/>
-    <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="274,288,0,0" VerticalAlignment="Top" Width="75"/>
+    <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="114,288,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddNewDebitorCommand, Mode=OneWay}"/>
+        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="274,288,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CancelCommand, Mode=OneWay}"/>
     <Label x:Name="LabelName" Content="Name: " HorizontalAlignment="Left" Margin="66,88,0,0" VerticalAlignment="Top"/>
     <Label x:Name="LabelValue" Content="Initial value: " HorizontalAlignment="Left" Margin="66,142,0,0" VerticalAlignment="Top"/>
     <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="157,92,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, StringFormat=F1, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
