@@ -77,8 +77,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="NavigationService.cs" />
-    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="Views\NavigationService.cs" />
+    <Compile Include="Models\ViewModelLocator.cs" />
     <Page Include="Views\AddDebitorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,9 +95,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Debitor.cs" />
-    <Compile Include="Debt.cs" />
-    <Compile Include="DebtBookModel.cs" />
+    <Compile Include="DTO\Debitor.cs" />
+    <Compile Include="DTO\Debt.cs" />
+    <Compile Include="Models\DebtBookModel.cs" />
     <Compile Include="ViewModels\AddDebitorViewModel.cs" />
     <Compile Include="ViewModels\AddDebtToDebitorViewModel.cs" />
     <Compile Include="ViewModels\INavigationService.cs" />
