@@ -36,33 +36,15 @@ namespace TheDebtBook
 
 
 
-        public ObservableCollection<DebitorNameTotalDept> DebitorsNameTotalDepts
+        public ObservableCollection<Debitor> Debitors
         {
             get
             {
-                ObservableCollection<DebitorNameTotalDept> list = new ObservableCollection<DebitorNameTotalDept>();
-                foreach (var d in _model.Debitors)
-                {
-                    DebitorNameTotalDept debitorNameTotal = new DebitorNameTotalDept();
-                    debitorNameTotal.Name = d.Name;
-                    debitorNameTotal.TotalDept = GetTotalDept(d);
-                    list.Add(debitorNameTotal);
-                }
-
-                return list;
+               return _model.Debitors;
             }
         }
 
-        private double GetTotalDept(Debitor d)
-        {
-            double totalDept = 0;
-            foreach (var debt in d.Debts)
-            {
-                totalDept = totalDept + debt.Value;
-            }
-
-            return totalDept;
-        }
+        
         #region Commands
         ICommand _addDeptToDebitorCommand;
         private ICommand _addDepitorCommand;
@@ -103,11 +85,7 @@ namespace TheDebtBook
         #endregion
     }
 
-    public class DebitorNameTotalDept
-    {
-        public string Name { get; set; }
-        public double TotalDept { get; set; }
-    }
+    
 
 
 }
