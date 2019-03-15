@@ -12,7 +12,7 @@
 
         public AddDebitorViewModel DebitorViewModel
         {
-            get { return new AddDebitorViewModel(model);}
+            get { return new AddDebitorViewModel(model, navigationService);}
         }
 
         public AddDebtToDebitorViewModel DebtViewModel

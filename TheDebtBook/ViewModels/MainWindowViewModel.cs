@@ -6,7 +6,6 @@ using Prism.Mvvm;
 using TheDebtBook.Annotations;
 using Prism.Commands;
 using System.Windows.Input;
-using TheDebtBook.ViewModels;
 
 namespace TheDebtBook
 {
@@ -68,7 +67,7 @@ namespace TheDebtBook
 
         public ICommand AddDepitorCommand
         {
-            get { return _addDepitorCommand ?? (_addDepitorCommand = new RelayCommand(AddDebitor)); }
+            get { return _addDepitorCommand ?? (_addDepitorCommand = new DelegateCommand(AddDebitor)); }
         }
 
 
@@ -76,8 +75,8 @@ namespace TheDebtBook
 
         private void AddDebitor()
         {
-            AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model);
-            _navigationService.ShowDebitorView(addDebitorViewModel);
+            AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
+            _navigationService.ShowView(addDebitorViewModel);
         }
 
         

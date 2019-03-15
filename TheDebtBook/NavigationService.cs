@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using TheDebtBook.Views;
 
 namespace TheDebtBook
 {
-    public class NavigationService : INavigationService
+    public class NavigationService
     {
-        public void ShowDebitorView(AddDebitorViewModel addDebitorViewModel)
+        private AddDebitorView _addDebitorView;
+
+        public void ShowView(AddDebitorViewModel addDebitorViewModel)
         {
-            AddDebitorView addDebitorView = new AddDebitorView();
-            addDebitorView.Show();
+            _addDebitorView = new AddDebitorView();
+            _addDebitorView.Show();
+        }
+
+        public void CloseView(AddDebitorViewModel addDebitorViewModel)
+        {
+            _addDebitorView.Close();
         }
     }
 }

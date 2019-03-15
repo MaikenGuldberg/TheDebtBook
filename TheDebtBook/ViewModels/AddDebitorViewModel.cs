@@ -6,14 +6,16 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
+using Prism.Commands;
 using TheDebtBook.Annotations;
-using TheDebtBook.ViewModels;
 
 namespace TheDebtBook
 {
     public class AddDebitorViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private NavigationService _navigationService;
+
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -23,9 +25,10 @@ namespace TheDebtBook
 
         private DebtBookModel _model;
 
-        public AddDebitorViewModel(DebtBookModel model)
+        public AddDebitorViewModel(DebtBookModel model, NavigationService navigationService)
         {
             _model = model;
+            _navigationService = navigationService;
         }
 
         private string _name;
@@ -63,8 +66,15 @@ namespace TheDebtBook
         {
             get
             {
-                return _addNewDebitorCommand ??
-                       (_addNewDebitorCommand = new RelayCommand(AddNewDebitor, AddNewDebitorCanExecute));
+                return _addNewDebitorCommand ?? (_addNewDebitorCommand = new DelegateCommand(() =>
+                           {
+                               AddNewDebitor();
+
+                           }, () =>
+                           {
+                               return Name != null;
+                           }
+                       ).ObservesProperty(() => Name));
             }
         }
 
@@ -77,16 +87,12 @@ namespace TheDebtBook
             Debt debt = new Debt(Value, DateTime.Now);
             debitor.Debts.Add(debt);
             _model.AddDebitor(debitor);
+            
+            AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
 
+            _navigationService.CloseView(addDebitorViewModel);
             //OnPropertyChanged();
         }
-
-        private bool AddNewDebitorCanExecute()
-        {
-            bool paramsAreValid = (Name != null);
-            return paramsAreValid;
-        }
-
 
     }
 }
