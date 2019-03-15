@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Documents;
 
 namespace TheDebtBook
@@ -6,15 +7,15 @@ namespace TheDebtBook
     public class Debitor
     {
         private string _name;
-        private List<Debt> _debts;
+        private ObservableCollection<Debt> _debts;
 
         public Debitor(string name)
         {
             _name = name;
-            _debts = new List<Debt>();
+            _debts = new ObservableCollection<Debt>();
         }
 
-        public Debitor(string name, List<Debt> debts)
+        public Debitor(string name, ObservableCollection<Debt> debts)
         {
             _name = name;
             _debts = debts;
@@ -26,7 +27,7 @@ namespace TheDebtBook
             set => _name = value;
         }
 
-        public List<Debt> Debts
+        public ObservableCollection<Debt> Debts
         {
             get => _debts;
             set => _debts = value;

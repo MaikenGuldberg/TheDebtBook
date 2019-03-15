@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -69,7 +70,7 @@ namespace TheDebtBook
 
         private void AddNewDebitor()
         {
-            List<Debt> list = new List<Debt>();
+            ObservableCollection<Debt> list = new ObservableCollection<Debt>();
         
             Debitor debitor = new Debitor(Name, list);
             debitor.Name = Name;

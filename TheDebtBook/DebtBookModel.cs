@@ -14,8 +14,8 @@ namespace TheDebtBook
             _debitors = new ObservableCollection<Debitor>()
             {
               #if DEBUG
-              new Debitor("Nicklas",new List<Debt>(){new Debt(50,DateTime.Now),new Debt(-10,DateTime.Now),new Debt(20,DateTime.Now)}),
-              new Debitor("Mikkel",new List<Debt>(){new Debt(200,DateTime.Now),new Debt(30,DateTime.Now),new Debt(-100,DateTime.Now)})
+              new Debitor("Nicklas",new ObservableCollection<Debt>(){new Debt(50,DateTime.Now),new Debt(-10,DateTime.Now),new Debt(20,DateTime.Now)}),
+              new Debitor("Mikkel",new ObservableCollection<Debt>(){new Debt(200,DateTime.Now),new Debt(30,DateTime.Now),new Debt(-100,DateTime.Now)})
               #endif
             };
             CurrentIndex = 0;

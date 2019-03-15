@@ -11,7 +11,7 @@ namespace TheDebtBook
             _model = model;
         }
 
-        public ObservableCollection<DebtDateValue> DebtsDatesValues
+        public ObservableCollection<Debt> DebtsDatesValues
         {
             get
             {
@@ -23,7 +23,7 @@ namespace TheDebtBook
                     debtDateValue.Value = debt.Value;
                 }
 
-                return list;
+                return _model.Debitors[_model.CurrentIndex].Debts;
             }
         }
     }
