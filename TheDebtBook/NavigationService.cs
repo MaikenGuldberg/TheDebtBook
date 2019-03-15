@@ -13,16 +13,44 @@ namespace TheDebtBook
     public class NavigationService
     {
         private AddDebitorView _addDebitorView;
+        private AddDeptToDebitorView _addDeptToDebitorView;
 
-        public void ShowView(AddDebitorViewModel addDebitorViewModel)
+        public NavigationService()
         {
             _addDebitorView = new AddDebitorView();
-            _addDebitorView.Show();
+            _addDeptToDebitorView = new AddDeptToDebitorView();
         }
 
-        public void CloseView(AddDebitorViewModel addDebitorViewModel)
+        public void ShowView(View view)
         {
-            _addDebitorView.Close();
+            switch (view)
+            {
+                case View.AddDebitor:
+                    _addDebitorView.Show();
+                    break;
+                case View.AddDebtToDebitor:
+                    _addDeptToDebitorView.Show();
+                    break;
+            }
         }
+
+        public void CloseView(View view)
+        {
+            switch (view)
+            {
+                case View.AddDebitor:
+                    _addDebitorView.Hide();
+                    break;
+                case View.AddDebtToDebitor:
+                    _addDeptToDebitorView.Hide();
+                    break;
+            }
+        }
+    }
+
+    public enum View
+    {
+        AddDebitor,
+        AddDebtToDebitor
     }
 }

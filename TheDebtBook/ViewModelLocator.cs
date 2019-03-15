@@ -4,6 +4,9 @@
     {
         private DebtBookModel model = new DebtBookModel();
         private NavigationService navigationService = new NavigationService();
+        //private MainWindowViewModel _mainWindowViewModel;
+        //private AddDebtToDebitorViewModel _addDebtToDebitorViewModel;
+        //private AddDebitorViewModel _addDebitorViewModel;
 
         public MainWindowViewModel MainViewModel
         {

@@ -76,7 +76,7 @@ namespace TheDebtBook
         private void AddDebitor()
         {
             AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
-            _navigationService.ShowView(addDebitorViewModel);
+            _navigationService.ShowView(View.AddDebitor);
         }
 
         

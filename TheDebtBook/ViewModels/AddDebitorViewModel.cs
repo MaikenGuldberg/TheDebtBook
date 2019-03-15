@@ -90,7 +90,7 @@ namespace TheDebtBook
             
             AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
 
-            _navigationService.CloseView(addDebitorViewModel);
+            _navigationService.CloseView(View.AddDebitor);
             //OnPropertyChanged();
         }
 
