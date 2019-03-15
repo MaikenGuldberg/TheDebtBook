@@ -5,18 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheDebtBook.Views"
         mc:Ignorable="d"
-        Title="AddDeptToDebitorView" Height="450" Width="800" DataContext="{Binding Source={StaticResource ViewModelLocator},Path=DebtViewModel}">
+        Title="AddDeptToDebitorView" Height="410.111" Width="599.723" DataContext="{Binding Source={StaticResource ViewModelLocator},Path=DebtViewModel}">
     <Window.Resources>
         <Style x:Key="TextAlignmentRight" TargetType="{x:Type TextBlock}">
             <Setter Property="TextAlignment" Value="Right" />
         </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid ItemsSource="{Binding DebtsDatesValues}" Margin="10,76,383,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}">
+        <DataGrid ItemsSource="{Binding Debts}"  IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}" Margin="10,76,283,21">
             <DataGrid.Columns>
-                <DataGridTextColumn MinWidth="100" Width="3*"  Header="Date" Binding="{Binding Date}"></DataGridTextColumn>
+                <DataGridTextColumn MinWidth="100" Width="3*"  Header="Date" Binding="{Binding Date, StringFormat={}{0:MM/dd/yy}}"></DataGridTextColumn>
                 <DataGridTextColumn MinWidth="60" Width="2*" Header="Dept" Binding="{Binding Value}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="{Binding DebitorName}" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <GroupBox Header="Add Debt To Debitor" HorizontalAlignment="Left" Height="151" Margin="357,76,0,0" VerticalAlignment="Top" Width="193" FontSize="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="107*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Height="23" TextWrapping="Wrap" Text="{Binding NewDebt, Mode=TwoWay}" Margin="76,23,47,79" Grid.Column="1" RenderTransformOrigin="0.507,0.361"/>
+                <Label Content="Amount:" VerticalContentAlignment="Center" FontSize="13" Margin="4,20,105,75" Grid.Column="1"/>
+                <Button Name="AddDebtBtn" Content="Add" HorizontalAlignment="Left" Margin="91,91,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddDebtCommand, Mode=OneWay}" Grid.Column="1"/>
+                <Label Content="kr." Grid.Column="1" HorizontalAlignment="Left" Margin="140,20,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="475,338,0,0" VerticalAlignment="Top" Width="75" Name="CloseBtn"/>
+
     </Grid>
 </Window>
