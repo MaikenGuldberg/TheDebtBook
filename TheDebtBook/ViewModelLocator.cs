@@ -2,25 +2,22 @@
 {
     public class ViewModelLocator
     {
-        private DebtBookModel model = new DebtBookModel();
-        private NavigationService navigationService = new NavigationService();
+        private DebtBookModel _model;
+
+        private NavigationService _navigationService;
         //private MainWindowViewModel _mainWindowViewModel;
         //private AddDebtToDebitorViewModel _addDebtToDebitorViewModel;
         //private AddDebitorViewModel _addDebitorViewModel;
 
+        public ViewModelLocator()
+        {
+            _model = new DebtBookModel();
+            _navigationService = new NavigationService();
+        }
+
         public MainWindowViewModel MainViewModel
         {
-            get { return new MainWindowViewModel(model, navigationService);}
-        }
-
-        public AddDebitorViewModel DebitorViewModel
-        {
-            get { return new AddDebitorViewModel(model, navigationService);}
-        }
-
-        public AddDebtToDebitorViewModel DebtViewModel
-        {
-            get { return new AddDebtToDebitorViewModel(model);}
+            get { return new MainWindowViewModel(_model, _navigationService);}
         }
     }
 }

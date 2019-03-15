@@ -7,7 +7,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:TheDebtBook"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500" DataContext="{Binding Source={StaticResource ViewModelLocator},Path=MainViewModel}">
+        Title="MainWindow" Height="450" Width="500" DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}">
     <Window.Resources>
         <Style x:Key="TextAlignmentRight" TargetType="{x:Type TextBlock}">
             <Setter Property="TextAlignment" Value="Right" />
@@ -20,12 +20,12 @@
                 <DataGridTextColumn MinWidth="100" Width="3*"  Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn MinWidth="60" Width="2*" Header="Total Dept" Binding="{Binding TotalDebt}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
             </DataGrid.Columns>
-            <!--<i:Interaction.Triggers>
+            <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <prism:InvokeCommandAction Command="{Binding EditAgentCommand}"/>
+                    <prism:InvokeCommandAction Command="{Binding AddDeptToDebitorCommand}"/>
                 </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+            </i:Interaction.Triggers>
         </DataGrid>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="333,267,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddDepitorCommand, Mode=OneTime}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="333,267,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddDebitorCommand, Mode=OneTime}"/>
     </Grid>
 </Window>

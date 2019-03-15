@@ -46,7 +46,7 @@ namespace TheDebtBook
         
         #region Commands
         ICommand _addDeptToDebitorCommand;
-        private ICommand _addDepitorCommand;
+        private ICommand _addDebitorCommand;
 
 
         public ICommand AddDeptToDebitorCommand
@@ -55,7 +55,7 @@ namespace TheDebtBook
             {
                 return _addDeptToDebitorCommand ?? (_addDeptToDebitorCommand = new DelegateCommand(() =>
           {
-
+              _navigationService.ShowView(View.AddDebtToDebitor);
           }, () =>
           {
               return CurrentIndex >= 0;
@@ -65,9 +65,9 @@ namespace TheDebtBook
             }
         }
 
-        public ICommand AddDepitorCommand
+        public ICommand AddDebitorCommand
         {
-            get { return _addDepitorCommand ?? (_addDepitorCommand = new DelegateCommand(AddDebitor)); }
+            get { return _addDebitorCommand ?? (_addDebitorCommand = new DelegateCommand(AddDebitor)); }
         }
 
 
@@ -75,7 +75,6 @@ namespace TheDebtBook
 
         private void AddDebitor()
         {
-            AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
             _navigationService.ShowView(View.AddDebitor);
         }
 

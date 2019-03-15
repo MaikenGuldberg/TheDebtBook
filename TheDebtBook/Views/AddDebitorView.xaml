@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheDebtBook.Views"
         mc:Ignorable="d"
-        Title="AddDebitorView" Height="450" Width="800"
-        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=DebitorViewModel}">
+        Title="AddDebitorView" Height="450" Width="800" DataContext="{Binding Source={StaticResource Locator}, Path=DebitorViewModel}"
+        >
     <Grid>
     <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="114,288,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddNewDebitorCommand, Mode=OneTime}"/>
     <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="274,288,0,0" VerticalAlignment="Top" Width="75"/>
@@ -17,3 +17,4 @@
 
   </Grid>
 </Window>
+

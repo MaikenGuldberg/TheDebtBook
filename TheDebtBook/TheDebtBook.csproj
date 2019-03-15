@@ -100,6 +100,7 @@
     <Compile Include="DebtBookModel.cs" />
     <Compile Include="ViewModels\AddDebitorViewModel.cs" />
     <Compile Include="ViewModels\AddDebtToDebitorViewModel.cs" />
+    <Compile Include="ViewModels\INavigationService.cs" />
     <Compile Include="Views\AddDebitorView.xaml.cs">
       <DependentUpon>AddDebitorView.xaml</DependentUpon>
     </Compile>

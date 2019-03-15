@@ -12,9 +12,11 @@ namespace TheDebtBook
     {
         private DebtBookModel _model;
         private double _newDebt = 0;
-        public AddDebtToDebitorViewModel(DebtBookModel model)
+        private NavigationService _navigationService;
+        public AddDebtToDebitorViewModel(DebtBookModel model,NavigationService navigationService)
         {
             _model = model;
+            _navigationService = navigationService;
         }
 
         public double NewDebt
