@@ -82,16 +82,10 @@ namespace TheDebtBook
         {
             ObservableCollection<Debt> list = new ObservableCollection<Debt>();
         
-            Debitor debitor = new Debitor(Name, list);
-            debitor.Name = Name;
-            Debt debt = new Debt(Value, DateTime.Now);
-            debitor.Debts.Add(debt);
+            Debitor debitor = new Debitor(Name, new ObservableCollection<Debt>(){ new Debt(Value, DateTime.Now)
+            });
             _model.AddDebitor(debitor);
-            
-            AddDebitorViewModel addDebitorViewModel = new AddDebitorViewModel(_model, _navigationService);
-            
             _navigationService.CloseView(this);
-            //OnPropertyChanged();
         }
 
         private ICommand _cancelCommand;

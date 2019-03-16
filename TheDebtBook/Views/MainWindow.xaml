@@ -7,18 +7,18 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:TheDebtBook"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500" DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}">
+        Title="The debt book" Height="450" Width="500" DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="TextAlignmentRight" TargetType="{x:Type TextBlock}">
             <Setter Property="TextAlignment" Value="Right" />
         </Style>
     </Window.Resources>
     <Grid>
-        <Label Content="Deptes" FontSize="25" Margin="10,26,373,348"></Label>
-        <DataGrid ItemsSource="{Binding Debitors}" Margin="10,76,179,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}" IsReadOnly="True" CanUserSortColumns="False">
+        <Label Content="Debtes" FontSize="25" Margin="10,26,373,348"></Label>
+        <DataGrid ItemsSource="{Binding Debitors}" Margin="10,76,179,132" IsSynchronizedWithCurrentItem="True" FontSize="20" AutoGenerateColumns="False" SelectedIndex="{Binding Path=CurrentIndex}" IsReadOnly="True" CanUserSortColumns="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="100" Width="3*"  Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn MinWidth="60" Width="2*" Header="Total Dept" Binding="{Binding TotalDebt}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
+                <DataGridTextColumn MinWidth="60" Width="2*" Header="Total Debt" Binding="{Binding TotalDebt}" ElementStyle="{StaticResource TextAlignmentRight}"></DataGridTextColumn>
             </DataGrid.Columns>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
@@ -26,6 +26,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="333,267,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddDebitorCommand, Mode=OneTime}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="354,76,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddDebitorCommand, Mode=OneWay}"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="354,126,0,0" VerticalAlignment="Top" Width="75" Command="{Binding DeleteDebitorCommand, Mode=OneWay}"/>
     </Grid>
 </Window>

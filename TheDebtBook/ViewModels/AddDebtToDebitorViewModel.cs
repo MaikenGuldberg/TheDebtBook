@@ -45,6 +45,20 @@ namespace TheDebtBook
             get { return _model.Debitors[_model.CurrentIndex].Name; }
         }
 
+        private int _currentDebt = -1;
+
+        public int CurrentDebt
+        {
+            get { return _currentDebt;}
+            set
+            {
+                if (_currentDebt != value)
+                {
+                    _currentDebt = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -65,7 +79,8 @@ namespace TheDebtBook
         private void AddDebt()
         {
             Debt debt = new Debt(_newDebt,DateTime.Now);
-            _model.AddDeptToDebitor(debt,_model.CurrentIndex);
+            _model.AddDeptToDebitor(debt);
+            NewDebt = 0;
         }
 
         private ICommand _cancelCommand;
@@ -78,6 +93,15 @@ namespace TheDebtBook
             })); }
         }
 
+        private ICommand _deleteDebtCommand;
+
+        public ICommand DeleteDebtCommand
+        {
+            get { return _deleteDebtCommand ?? (_deleteDebtCommand = new DelegateCommand((() =>
+            {
+                _model.DeleteDebt(CurrentDebt);
+            }),(() => { return CurrentDebt >= 0;})).ObservesProperty((() => CurrentDebt))); }
+        }
 
 
         #endregion

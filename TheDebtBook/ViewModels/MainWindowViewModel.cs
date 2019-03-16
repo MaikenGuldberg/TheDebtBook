@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
@@ -9,32 +10,30 @@ using System.Windows.Input;
 
 namespace TheDebtBook
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
 
         private DebtBookModel _model;
-        private int currentIndex;
         private INavigationService _navigationService;
 
         public MainWindowViewModel(DebtBookModel model, INavigationService navigationService)
         {
             _model = model;
-            currentIndex = _model.CurrentIndex;
             _navigationService = navigationService;
         }
 
         public int CurrentIndex
         {
-            get { return currentIndex; }
+            get { return _model.CurrentIndex; }
             set
             {
-                SetProperty(ref currentIndex, value);
-                _model.CurrentIndex = currentIndex;
+                if (value != _model.CurrentIndex)
+                {
+                    _model.CurrentIndex = value;
+                    OnPropertyChanged();
+                }
             }
         }
-
-
-
         public ObservableCollection<Debitor> Debitors
         {
             get
@@ -46,9 +45,7 @@ namespace TheDebtBook
         
         #region Commands
         ICommand _addDeptToDebitorCommand;
-        private ICommand _addDebitorCommand;
-
-
+        
         public ICommand AddDeptToDebitorCommand
         {
             get
@@ -65,22 +62,38 @@ namespace TheDebtBook
             }
         }
 
+        private ICommand _addDebitorCommand;
+
         public ICommand AddDebitorCommand
         {
             get { return _addDebitorCommand ?? (_addDebitorCommand = new DelegateCommand(AddDebitor)); }
         }
-
-
-
 
         private void AddDebitor()
         {
             _navigationService.ShowView(new AddDebitorViewModel(_model, _navigationService));
         }
 
-        
+        private ICommand _deleteDebitorCommand;
+
+        public ICommand DeleteDebitorCommand
+        {
+            get { return _deleteDebitorCommand ?? (_deleteDebitorCommand = new DelegateCommand((() =>
+            {
+                _model.RemoveDebitor();
+            }),(() => { return CurrentIndex >= 0; })).ObservesProperty((() => CurrentIndex))); }
+        }
+
 
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     

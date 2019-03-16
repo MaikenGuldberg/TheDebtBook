@@ -18,7 +18,7 @@ namespace TheDebtBook
               new Debitor("Mikkel",new ObservableCollection<Debt>(){new Debt(200,DateTime.Now),new Debt(30,DateTime.Now),new Debt(-100,DateTime.Now)})
               #endif
             };
-            CurrentIndex = 0;
+            CurrentIndex = -1;
         }
 
         public void AddDebitor(Debitor d)
@@ -26,16 +26,23 @@ namespace TheDebtBook
             _debitors.Add(d);
         }
 
-        public void RemoveDebitor(int index)
+        public void RemoveDebitor()
         {
-            _debitors.RemoveAt(index);
+            _debitors.RemoveAt(CurrentIndex);
         }
 
-        public void AddDeptToDebitor(Debt debt,int indexDebitor)
+        public void AddDeptToDebitor(Debt debt)
         {
-            _debitors[indexDebitor].Debts.Add(debt);
+            _debitors[CurrentIndex].Debts.Add(debt);
+            _debitors[CurrentIndex].TotalDebt = _debitors[CurrentIndex].GetTotalDept();
         }
 
+        public void DeleteDebt(int index)
+        {
+            _debitors[CurrentIndex].TotalDebt =
+                _debitors[CurrentIndex].GetTotalDept() - _debitors[CurrentIndex].Debts[index].Value;
+            _debitors[CurrentIndex].Debts.RemoveAt(index);
+        }
 
         public ObservableCollection<Debitor> Debitors => _debitors;
     }
